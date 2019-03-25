@@ -11,10 +11,22 @@ group :development do
   # See: http://hanamirb.org/guides/projects/code-reloading
   gem 'shotgun', platforms: :ruby
   gem 'hanami-webconsole'
+
+  gem "brakeman"
+  gem "bullet"
+  gem "bundler-audit"
+  gem "letter_opener"
+  gem "pre-commit", require: false
+  gem "solargraph"
 end
 
 group :test, :development do
   gem 'dotenv', '~> 2.4'
+
+  gem "beautiful-log"
+  gem "better_errors"
+  gem "binding_of_caller"
+  gem "tapp"
 end
 
 group :test do
