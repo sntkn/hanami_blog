@@ -6,15 +6,14 @@ module Web
 
         params do
           required(:book).schema do
-            required(:title).filled(:str?)
-            required(:author).filled(:str?)
+            required(:title).filled(:str?, max_size?: 200)
+            required(:author).filled(:str?, max_size?: 100)
           end
         end
 
         def call(params)
           if params.valid?
-            BookRepository.new.create(params[:book])
-
+            AddBook.new.call(params[:book])
             redirect_to routes.books_path
           else
             self.status = 422
