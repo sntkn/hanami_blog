@@ -23,15 +23,16 @@ end
 group :test, :development do
   gem 'dotenv', '~> 2.4'
 
-  gem "beautiful-log"
   gem "better_errors"
   gem "binding_of_caller"
   gem "tapp"
+  gem "pry"
 end
 
 group :test do
   gem 'rspec'
   gem 'capybara'
+  gem 'simplecov'
 end
 
 group :production do
