@@ -210,12 +210,12 @@ Style/Semicolon:
 # * 文章ではダブルクォートよりもシングルクォートの方が頻出する
 # ことから EnforcedStyle: double_quotes 推奨
 Style/StringLiterals:
-  EnforcedStyle: double_quotes
+  Enabled: false
 
 # 式展開中でもダブルクォートを使う
 # 普段の文字列リテラルがダブルクォートなので使い分けるのが面倒
 Style/StringLiteralsInInterpolation:
-  EnforcedStyle: double_quotes
+  Enabled: false
 
 # String#intern は ruby の内部表現すぎるので String#to_sym を使う
 Style/StringMethods:
