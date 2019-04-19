@@ -1,0 +1,15 @@
+<% if flash[:errors] %>
+  <div class="errors">
+    <h3>There was a problem with your submission</h3>
+    <ul>
+      <% flash[:errors].each do |attr, messages| %>
+          <% messages.each do |message| %>
+            <li><%= attr %> <%= message %></li>
+          <% end %>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+<% %i[success danger notice].each do |key| %>
+  <p class="#{key}"><%= flash[key] %></p>
+<% end %>

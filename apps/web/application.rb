@@ -20,7 +20,7 @@ module Web
       #
       load_paths << [
         'controllers',
-        'views'
+        'views',
       ]
 
       # Handle exceptions with HTTP statuses (true) or don't catch them (false).
@@ -73,7 +73,7 @@ module Web
       #
       # cookies true
       # or
-      # cookies max_age: 300
+      cookies max_age: 300
 
       # Enable sessions
       # Argument: Symbol the Rack session adapter
@@ -81,7 +81,7 @@ module Web
       #
       # See: http://www.rubydoc.info/gems/rack/Rack/Session/Cookie
       #
-      # sessions :cookie, secret: ENV['WEB_SESSIONS_SECRET']
+      sessions :cookie, secret: ENV['WEB_SESSIONS_SECRET']
 
       # Configure Rack middleware for this application
       #
@@ -143,7 +143,7 @@ module Web
         # Specify sources for assets
         #
         sources << [
-          'assets'
+          'assets',
         ]
       end
 
@@ -220,7 +220,7 @@ module Web
       #
       #  * https://developer.mozilla.org/en-US/docs/Web/Security/CSP/CSP_policy_directives
       #
-      security.content_security_policy %{
+      security.content_security_policy %(
         form-action 'self';
         frame-ancestors 'self';
         base-uri 'self';
@@ -235,7 +235,7 @@ module Web
         child-src 'self';
         frame-src 'self';
         media-src 'self'
-      }
+      )
 
       ##
       # FRAMEWORKS
@@ -248,6 +248,7 @@ module Web
       controller.prepare do
         # include MyAuthentication # included in all the actions
         # before :authenticate!    # run an authentication before callback
+        include Web::Authentication
       end
 
       # Configure the code that will yield each time Web::View is included

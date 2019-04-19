@@ -1,7 +1,7 @@
 module Web
   module Controllers
     module Users
-      class SignUp
+      class SignIn
         include Web::Action
         expose :user
 

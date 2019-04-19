@@ -1,0 +1,12 @@
+<% if current_user %>
+  Hello, <%=current_user.name%>!
+  <ul>
+    <li><%=link_to 'sign_out', routes.sign_out_user_path %></li>
+    <li><%#=link_to 'profile', routes.show_user_path %></li>
+  </ul>
+<% else %>
+  <ul>
+    <li><%=link_to 'sign_in', routes.sign_in_user_path %></li>
+    <li><%=link_to 'sign_up', routes.sign_up_user_path %></li>
+  </ul>
+<% end %>

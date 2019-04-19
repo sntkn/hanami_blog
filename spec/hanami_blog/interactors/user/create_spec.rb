@@ -1,4 +1,4 @@
-RSpec.describe AddBook, type: :entity do
+RSpec.describe Interactors::User::Create, type: :entity do
   let(:attributes) { Hash[
     name: 'test',
     email: 'test@example.com',
@@ -7,7 +7,7 @@ RSpec.describe AddBook, type: :entity do
 ] }
 
   context "good input" do
-    let(:result) { AddUser.new(attributes).call }
+    let(:result) { Interactors::User::Create.new(attributes).call }
 
     it "succeeds" do
       expect(result.successful?).to be(true)
@@ -17,15 +17,6 @@ RSpec.describe AddBook, type: :entity do
       expect(result.user.name).to eq("test")
       expect(result.user.email).to eq("test@example.com")
       expect(result.error).to eq(nil)
-    end
-  end
-
-  context "persistence" do
-    let(:repository) { instance_double("BookRepository") }
-
-    it "persists the Book" do
-      expect(repository).to receive(:create)
-      AddBook.new(repository: repository).call(attributes)
     end
   end
 end

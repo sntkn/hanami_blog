@@ -1,16 +1,4 @@
 <h2>SingUp</h2>
-<% if error %>
-  <div class="errors">
-    <h3>There was a problem with your submission</h3>
-    <ul>
-      <% error.each do |attr, messages| %>
-          <% messages.each do |message| %>
-            <li><%= attr %> <%= message %></li>
-          <% end %>
-      <% end %>
-    </ul>
-  </div>
-<% end %>
 <%=
   form_for :user, '/users' do
     div class: 'input' do
