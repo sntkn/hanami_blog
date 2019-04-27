@@ -16,13 +16,29 @@ class UserFactory
     }
   end
 
-  def activate(activation_digest)
-    result = Interactors::User::Activate.new(activation_digest: activation_digest).call
-    result.users.first
+  def activate(user)
+    result = Interactors::User::Activate.new(id: user.id, activation_digest: user.activation_digest).call
+    result.user
   end
 
-  def authenticate(email, password)
-    result = Interactors::User::Authenticate.new(email: email, password: password).call
-    result.users.first
+  def authenticate(user, password: password)
+    result = Interactors::User::Authenticate.new(email: user.email, password: password).call
+    result.user
+  end
+
+  def authenticated(params = {})
+    merged_params = default_params.merge(params)
+    user = authenticate(activate(create(params)), password: merged_params[:password])
+    UserRepository.new.find(user.id)
+  end
+
+  def password_forgot(user)
+    result = Interactors::User::PasswordForgot.new(email: user.email).call
+    result.user
+  end
+
+  def email_update(user)
+    result = Interactors::User::EmailUpdate.new(id: user.id, user: {email: user.email, unconfirmed_email: 'test@example.com', unconfirmed_email_confirmation: 'test@example.com'}).call
+    result.user
   end
 end

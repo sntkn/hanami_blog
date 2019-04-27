@@ -11,23 +11,24 @@ module Interactors
         end
       end
 
-      expose :users, :params
+      expose :user, :params
 
       def initialize(params, repository: UserRepository.new)
         @params = params
         @repository = repository
+        @user = @repository.find(params[:id]) #(activation_digest: @params[:activation_digest])
       end
 
       def call
-        @users = @repository.find_by_activation_digest(@params[:activation_digest])
-        return error(activation_digest: ["activation digest is invalid"]) if @users.count.zero?
-        @repository.activate(@users.first.id)
-        @repository.generate_token_of_user(@users.first.id)
+        @repository.activate(@user)
+        @repository.generate_token_of_user(@user)
       end
 
       def valid?
         validation = Validation.new(@params).validate
         error(validation.messages) if validation.failure?
+        error!(id: ["is invalid"]) if @user.nil?
+        error!(activation_digest: ["activation digest is invalid"]) if @user.activation_digest != @params[:activation_digest]
 
         validation.success?
       end

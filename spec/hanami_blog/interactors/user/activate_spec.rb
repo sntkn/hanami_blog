@@ -1,8 +1,8 @@
 require 'factories/user_factory'
 RSpec.describe Interactors::User::Activate, type: :entity do
   let(:user) { UserFactory.new.create }
-  let(:attributes) { Hash[activation_digest: user.activation_digest] }
-  let(:error_attributes) { Hash[activation_digest: user.activation_digest + 'dummy'] }
+  let(:attributes) { {id: user.id, activation_digest: user.activation_digest} }
+  let(:error_attributes) { {id: user.id, activation_digest: user.activation_digest + 'dummy'} }
 
   context "good input" do
     it "succeeds" do

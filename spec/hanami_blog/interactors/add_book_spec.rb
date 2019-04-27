@@ -1,6 +1,6 @@
 RSpec.describe AddBook, type: :entity do
   let(:interactor) { AddBook.new }
-  let(:attributes) { Hash[author: "James Baldwin", title: "The Fire Next Time"] }
+  let(:attributes) { {author: "James Baldwin", title: "The Fire Next Time"} }
 
   context "good input" do
     let(:result) { interactor.call(attributes) }

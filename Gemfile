@@ -35,6 +35,7 @@ group :test do
   gem 'database_cleaner'
   gem 'rspec'
   gem 'simplecov'
+  gem "timecop"
 end
 
 group :production do

@@ -338,6 +338,7 @@ Metrics/BlockLength:
     - "config/routes.rb"
     - "config/routes/**/*.rb"
     - "*.gemspec"
+    - apps/web/application.rb
 # 6 は強すぎるので緩める
 Metrics/CyclomaticComplexity:
   Max: 10

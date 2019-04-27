@@ -1,0 +1,23 @@
+<h2>Email Edit</h2>
+<%=
+  form_for :user, routes.email_update_user_path(user.id) do
+    div class: 'input' do
+      label      :email
+      text_field :email
+    end
+ 
+    div class: 'input' do
+      label      :new_email
+      text_field :unconfirmed_email
+    end
+ 
+    div class: 'input' do
+      label      :new_email_confirmation
+      text_field :unconfirmed_email_confirmation
+    end
+ 
+    div class: 'controls' do
+      submit 'Edit'
+    end
+  end
+%>

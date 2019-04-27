@@ -9,7 +9,7 @@ module Web
           interactor = Interactors::User::Activate.new(params).call
 
           if interactor.successful?
-            @user = interactor.users.first
+            @user = interactor.user
             token_session(@user.token)
             flash[:success] = 'Account has been activated!'
             redirect_to routes.root_path

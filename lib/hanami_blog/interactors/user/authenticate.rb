@@ -13,25 +13,26 @@ module Interactors
         end
       end
 
-      expose :users, :params
+      expose :user, :token, :params
 
       def initialize(params, repository: UserRepository.new)
         @params = params
         @repository = repository
+        @user = @repository.authenticate(
+          email: @params[:email],
+          password: @params[:password],
+        )
       end
 
       def call
-        @users = @repository.authenticate(
-          email: @params[:email],
-          password: Digest::SHA256.hexdigest(@params[:password]),
-        )
-        return error(sign_in: ["email or password are invalid"]) if @users.count.zero?
-        return error(sign_in: ['dont activated']) unless @users.first.activated
+        @token = @repository.generate_token_of_user(@user).token
       end
 
       def valid?
         validation = Validation.new(@params).validate
         error(validation.messages) if validation.failure?
+        error!(sign_in: ["email or password are invalid"]) if @user.nil?
+        error!(sign_in: ['dont activated']) unless @user.activated
 
         validation.success?
       end

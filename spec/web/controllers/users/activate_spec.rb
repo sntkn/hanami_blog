@@ -2,7 +2,7 @@ require 'factories/user_factory'
 RSpec.describe Web::Controllers::Users::Activate, type: :action do
   let(:action) { described_class.new }
   let(:user) { UserFactory.new.create }
-  let(:params) { Hash[activation_digest: user.activation_digest] }
+  let(:params) { {id:user.id, activation_digest: user.activation_digest} }
 
   it 'is successful' do
     response = action.call(params)

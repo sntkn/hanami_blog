@@ -14,7 +14,7 @@ module Mailers
     end
 
     def activation_url
-      Web.routes.activate_user_url + '?activation_digest=' + user.activation_digest
+      Web.routes.activate_user_url(user.id) + '?activation_digest=' + user.activation_digest
     end
 
     def subject

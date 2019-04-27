@@ -1,6 +1,6 @@
 RSpec.describe Web::Views::Users::Authenticate, type: :view do
   let(:exposures) { Hash[format: :html] }
-  let(:template)  { Hanami::View::Template.new('apps/web/templates/users/authenticate.html.erb') }
+  let(:template)  { Hanami::View::Template.new('apps/web/templates/users/sign_in.html.erb') }
   let(:view)      { described_class.new(template, exposures) }
   let(:rendered)  { view.render }
 

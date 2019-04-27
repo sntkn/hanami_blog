@@ -9,8 +9,8 @@ module Web
           interactor = Interactors::User::Authenticate.new(params.get(:user)).call
 
           if interactor.successful?
-            @user = interactor.users.first
-            token_session(@user.token)
+            @user = interactor.user
+            token_session(interactor.token)
             flash[:success] = 'Logged in!'
             redirect_to routes.root_path
           else

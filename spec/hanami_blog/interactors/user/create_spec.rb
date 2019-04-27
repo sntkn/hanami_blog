@@ -1,10 +1,10 @@
 RSpec.describe Interactors::User::Create, type: :entity do
-  let(:attributes) { Hash[
+  let(:attributes) { {
     name: 'test',
     email: 'test@example.com',
     password: '12345678@password',
     password_confirmation: '12345678@password',
-] }
+  } }
 
   context "good input" do
     let(:result) { Interactors::User::Create.new(attributes).call }
