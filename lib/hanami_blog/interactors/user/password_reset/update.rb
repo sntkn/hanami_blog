@@ -29,8 +29,8 @@ module Interactors
         def valid?
           validation = Validation.new(@params).validate
           error(validation.messages) if validation.failure?
-          error!(user_id: ["user is invalid"]) if @user.nil?
-          error!(expired_at: ["password reset is timeout"]) if @user.user_password_forgots.expired_at < Time.now
+          error!(id: ["is invalid"]) if @user.nil?
+          error!(expired_at: ["is expired"]) if @user.user_password_forgots.expired_at < Time.now
           validation.success?
         end
       end

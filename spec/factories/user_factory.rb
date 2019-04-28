@@ -39,6 +39,6 @@ class UserFactory
 
   def email_update(user)
     result = Interactors::User::EmailUpdate.new(id: user.id, user: {email: user.email, unconfirmed_email: 'test@example.com', unconfirmed_email_confirmation: 'test@example.com'}).call
-    result.user
+    UserRepository.new.find(result.user.id)
   end
 end

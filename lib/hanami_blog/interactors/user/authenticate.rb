@@ -32,7 +32,7 @@ module Interactors
         validation = Validation.new(@params).validate
         error(validation.messages) if validation.failure?
         error!(sign_in: ["email or password are invalid"]) if @user.nil?
-        error!(sign_in: ['dont activated']) unless @user.activated
+        error!(activated: ['is not activated']) unless @user.activated
 
         validation.success?
       end

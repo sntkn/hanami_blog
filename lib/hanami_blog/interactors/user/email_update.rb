@@ -30,9 +30,9 @@ module Interactors
       end
 
       def valid?
-        error!(id: ["is invalid"]) if @user.nil?
         validation = Validation.new(@params).validate
-        error!(validation.messages) if validation.failure?
+        error(validation.messages) if validation.failure?
+        error!(id: ["is invalid"]) if @user.nil?
         error!(email: ["is invalid"]) unless @user.email == @params[:email]
 
         validation.success?

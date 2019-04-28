@@ -32,7 +32,6 @@ module Interactors
           email: @params[:email],
           password: Digest::SHA256.hexdigest(@params[:password]),
           activation_digest: SecureRandom.urlsafe_base64(nil, false),
-          token: "",
         )
         @mailer.deliver(user: @user)
       end

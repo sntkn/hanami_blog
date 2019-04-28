@@ -28,7 +28,7 @@ module Interactors
         validation = Validation.new(@params).validate
         error(validation.messages) if validation.failure?
         error!(id: ["is invalid"]) if @user.nil?
-        error!(activation_digest: ["activation digest is invalid"]) if @user.activation_digest != @params[:activation_digest]
+        error!(activation_digest: ["is invalid"]) if @user.activation_digest != @params[:activation_digest]
 
         validation.success?
       end

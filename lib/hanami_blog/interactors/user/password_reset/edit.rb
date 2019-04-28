@@ -27,9 +27,9 @@ module Interactors
         def valid?
           validation = Validation.new(@params).validate
           error(validation.messages) if validation.failure?
-          error!(user_id: ["password digest is invalid"]) if @user.nil?
-          error!(password_digest: ["password digest is invalid"]) if @user.user_password_forgots.password_digest != @params[:password_digest]
-          error!(expired_at: ["password digest is timeout"]) if @user.user_password_forgots.expired_at < Time.now
+          error!(user_id: ["is invalid"]) if @user.nil?
+          error!(password_digest: ["is invalid"]) if @user.user_password_forgots.password_digest != @params[:password_digest]
+          error!(expired_at: ["is expired"]) if @user.user_password_forgots.expired_at < Time.now
           validation.success?
         end
       end

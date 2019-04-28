@@ -24,9 +24,9 @@ module Interactors
       end
 
       def valid?
-        error(id: ["is invalid"]) if @user.nil?
         validation = Validation.new(@params).validate
         error(validation.messages) if validation.failure?
+        error!(id: ["is invalid"]) if @user.nil?
 
         validation.success?
       end

@@ -25,8 +25,8 @@ module Interactors
 
       def valid?
         validation = Validation.new(@params).validate
-
         error(validation.messages) if validation.failure?
+        error!(id: ["is invalid"]) if @user.nil?
         error!(confirmation_digest: ["is invalid"]) unless @user.confirmation_digest == @params[:confirmation_digest]
         error!(confirmation_expired_at: ["is expired"]) if @user.confirmation_expired_at < Time.now
 

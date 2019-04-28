@@ -1,12 +1,11 @@
 require 'factories/user_factory'
 RSpec.describe Interactors::User::EmailConfirm, type: :entity do
-  let(:user) { UserFactory.new.authenticated }
-  let(:attributes) { {id: email_user.id, confirmation_digest: email_user.confirmation_digest} }
-  let(:error_attributes) { {id: email_user.id, confirmation_digest: email_user.confirmation_digest + 'dummy'} }
-  let!(:email_user) do
-    result = Interactors::User::EmailUpdate.new(id: user.id, user: {email: user.email, unconfirmed_email: 'test@example.com', unconfirmed_email_confirmation: 'test@example.com'}).call
-    UserRepository.new.find(result.user.id)
-  end
+  let!(:user) { 
+    user = UserFactory.new.authenticated
+    UserFactory.new.email_update(user)
+  }
+  let(:attributes) { {id: user.id, confirmation_digest: user.confirmation_digest} }
+  let(:error_attributes) { {id: user.id, confirmation_digest: user.confirmation_digest + 'dummy'} }
 
   context "good input" do
     it "succeeds" do
