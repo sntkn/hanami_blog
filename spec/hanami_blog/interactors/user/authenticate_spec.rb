@@ -11,20 +11,20 @@ RSpec.describe Interactors::User::Authenticate, type: :entity do
   } }
 
   context "when dont activated" do
-    it "falthy" do
+    it "fails" do
       result = Interactors::User::Authenticate.new(attributes).call
-      expect(result.successful?).to be(false)
+      expect(result.successful?).to be false
     end
   end
   context "good input" do
     before { UserFactory.new.activate(user) }
     it "succeeds" do
       result = Interactors::User::Authenticate.new(attributes).call
-      expect(result.successful?).to be(true)
+      expect(result.successful?).to be true
     end
-    it "falthy" do
+    it "fails" do
       result = Interactors::User::Authenticate.new(error_attributes).call
-      expect(result.successful?).to be(false)
+      expect(result.successful?).to be false
     end
   end
 end

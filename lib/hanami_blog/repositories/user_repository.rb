@@ -7,6 +7,21 @@ class UserRepository < Hanami::Repository
     users.where(email: email).one
   end
 
+  def create_or_update(user, name: name, email: email, password: password)
+      params = {
+        name: name,
+        email: email,
+        password: Digest::SHA256.hexdigest(password),
+        activation_digest: SecureRandom.urlsafe_base64(nil, false),
+        activation_expired_at: Time.now + 60 * 60
+      }
+    if user.nil?
+      create(params)
+    else
+      update(user.id, params)
+    end
+  end
+
   def find_by_activation_digest(activation_digest: activation_digest)
     users.where(activation_digest: activation_digest).one
   end

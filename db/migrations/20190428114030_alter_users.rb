@@ -5,6 +5,7 @@ Hanami::Model.migration do
       set_column_default :activation_digest, ''
       set_column_default :activated_at, '1970-01-01 00:00:01'
       set_column_allow_null :activated_at, false
+      add_column :activation_expired_at, DateTime, null: false, default: '1970-01-01 00:00:01'
     end
   end
 end

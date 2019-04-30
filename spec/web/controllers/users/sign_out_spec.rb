@@ -8,5 +8,6 @@ RSpec.describe Web::Controllers::Users::SignOut, type: :action do
   it 'is successful' do
     response = action.call(params)
     expect(response[0]).to eq 302
+    expect(action.exposures[:session][:token]).to eq nil
   end
 end

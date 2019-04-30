@@ -3,20 +3,20 @@ module Web
     module Users
       class Activate
         include Web::Action
-        expose :user
+        expose :token
 
         def call(params)
           interactor = Interactors::User::Activate.new(params).call
 
           if interactor.successful?
             @user = interactor.user
-            token_session(@user.token)
+            token_session(interactor.token)
             flash[:success] = 'Account has been activated!'
-            redirect_to routes.root_path
           else
             flash[:errors] = interactor.error
             self.status = 422
           end
+          redirect_to routes.root_path
         end
       end
     end

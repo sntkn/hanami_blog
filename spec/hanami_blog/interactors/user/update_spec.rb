@@ -7,14 +7,14 @@ RSpec.describe Interactors::User::Update, type: :entity do
   context "good input" do
     it "succeeds" do
       result = Interactors::User::Update.new(attributes).call
-      expect(result.successful?).to be(true)
+      expect(result.successful?).to be true
     end
   end
 
   context "invalid input" do
     it "fails" do
       result = Interactors::User::Update.new(error_attributes).call
-      expect(result.successful?).to be(false)
+      expect(result.successful?).to be false
     end
   end
 end

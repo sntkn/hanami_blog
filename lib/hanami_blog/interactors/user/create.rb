@@ -18,7 +18,7 @@ module Interactors
         end
       end
 
-      expose :user, :params
+      expose :user
 
       def initialize(params, repository: UserRepository.new, mailer: Mailers::Welcome)
         @params = params
@@ -27,12 +27,9 @@ module Interactors
       end
 
       def call
-        @user = @repository.create(
-          name: @params[:name],
-          email: @params[:email],
-          password: Digest::SHA256.hexdigest(@params[:password]),
-          activation_digest: SecureRandom.urlsafe_base64(nil, false),
-        )
+        user = @repository.find_by_email(email: @params[:email])
+        return false if user && user.activated
+        @user = @repository.create_or_update(user, name: @params[:name], email: @params[:email], password: @params[:password])
         @mailer.deliver(user: @user)
       end
 

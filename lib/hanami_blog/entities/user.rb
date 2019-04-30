@@ -8,6 +8,7 @@ class User < Hanami::Entity
     attribute :token, Types::String
     attribute :password, Types::Strict::String
     attribute :activation_digest, Types::Strict::String
+    attribute :activation_expired_at, Types::DateTime
     attribute :activated, Types::Strict::Bool
     attribute :activated_at, Types::DateTime
     attribute :unconfirmed_email, Types::String

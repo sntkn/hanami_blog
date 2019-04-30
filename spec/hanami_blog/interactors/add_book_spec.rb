@@ -6,7 +6,7 @@ RSpec.describe AddBook, type: :entity do
     let(:result) { interactor.call(attributes) }
 
     it "succeeds" do
-      expect(result.successful?).to be(true)
+      expect(result.successful?).to be true
     end
 
     it "creates a Book with correct title and author" do

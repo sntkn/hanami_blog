@@ -11,5 +11,6 @@ RSpec.describe Web::Controllers::Users::Authenticate, type: :action do
   it 'is successful' do
     response = action.call(params)
     expect(response[0]).to eq 302
+    expect(action.exposures[:session][:token]).not_to eq nil
   end
 end
