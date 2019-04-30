@@ -31,7 +31,7 @@ Hanami.configure do
     root 'lib/hanami_blog/mailers'
 
     # See http://hanamirb.org/guides/mailers/delivery
-    delivery :test
+    delivery :logger
   end
 
   environment :development do

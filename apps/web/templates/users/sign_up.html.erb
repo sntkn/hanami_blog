@@ -1,0 +1,28 @@
+<h2>SingUp</h2>
+<%=
+  form_for :user, '/users' do
+    div class: 'input' do
+      label      :email
+      text_field :email
+    end
+ 
+    div class: 'input' do
+      label      :name
+      text_field :name
+    end
+ 
+    div class: 'input' do
+      label      :password
+      password_field :password
+    end
+ 
+    div class: 'input' do
+      label      :password_confirmation
+      password_field :password_confirmation
+    end
+ 
+    div class: 'controls' do
+      submit 'Sign Up'
+    end
+  end
+%>

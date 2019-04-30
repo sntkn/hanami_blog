@@ -1,0 +1,15 @@
+<h2><%=user.name%>'s profile</h2>
+
+<%=
+  form_for :user, routes.user_path(user.id), method: :patch do
+ 
+    div class: 'input' do
+      label      :name
+      text_field :name
+    end
+  
+    div class: 'controls' do
+      submit 'update'
+    end
+  end
+%>

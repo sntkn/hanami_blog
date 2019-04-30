@@ -1,0 +1,18 @@
+<h2>Password Reset</h2>
+<%=
+  form_for :user, "/users/#{params[:user_id]}/password_resets/#{params[:id]}", method: :patch do
+    div class: 'input' do
+      label      :new_password
+      password_field :password
+    end
+ 
+    div class: 'input' do
+      label      :new_password_confirmation
+      password_field :password_confirmation
+    end
+ 
+    div class: 'controls' do
+      submit 'update password'
+    end
+  end
+%>

@@ -5,6 +5,8 @@
     <%= favicon %>
   </head>
   <body>
+    <%= render partial: 'shared/menubar' %>
+    <%= render partial: 'shared/messages' %>
     <h1>Bookshelf</h1>
     <%= yield %>
   </body>
